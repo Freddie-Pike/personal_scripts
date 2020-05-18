@@ -1,0 +1,157 @@
+#######################################
+## Welcome to Freddie's Setup Script ##
+#######################################
+
+# Heavily inspired by Kent C Dodds Script right here: 
+# https://github.com/kentcdodds/dotfiles/blob/master/.macos
+# Thanks Kent!
+
+####################
+## Initialization ##
+####################
+
+echo "~~~Initialization"
+
+# Close any open System Preferences panes, to prevent them from overriding
+# settings we’re about to change.
+osascript -e 'tell application "System Preferences" to quit'
+
+# Ask for the administrator password upfront. Avoids having to do it all the
+# for each new action.
+sudo -v
+
+# Keep-alive: update existing `sudo` time stamp until `.macos` has finished
+while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
+
+# Creating bash_profile, where commands live!
+touch ~/.bash_profile
+
+##################################
+## Installing Programming Stuff ##
+##################################
+
+# Installing the awesome mac package manager, homebrew. Awesome replacement for
+# apt-get in linux.
+# Official Website -> https://brew.sh 
+echo "~~~installing homebrew"
+/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+
+# Installing a bunch of brew packages, here's some:
+# libdvdcss: makes handbreak capable of ripping DVDs
+# imagemagick: eventually I will need this for something
+# ffmpeg: eventually I'll need this for something
+# tree: really handy for listing out directories in text
+# bat: A cat(1) clone with syntax highlighting and Git integration.
+# youtube-dl: Awesome youtube(and many other sites!) downloader.
+# dockutil: For managing the mac dock, used in the UI/UX section.
+brew install git libdvdcss imagemagick ffmpeg tree bat youtube-dl dockutil 
+
+
+### WEB DEV ###
+
+# Node -> For modern web development. 
+echo "installing node (via n-install)"
+curl -L https://git.io/n-install | bash
+
+echo "node --version: $(node --version)"
+echo "npm --version: $(npm --version)"
+
+### PYTHON ###
+brew install pyenv
+
+# Most commoningly used Python versions
+pyenv install 3.6.3
+pyenv install 3.8.3
+pyenv global 3.8.2
+
+# virtual environments 
+brew install pyenv-virtualenv
+
+### DB - Postgres ####
+brew install postgresql
+rm -r /usr/local/var/postgres/
+initdb /usr/local/var/postgres
+brew services start postgresql
+
+createdb freddie_fun # Replace with mongo
+
+### redis ###
+brew install redis
+brew services start redis
+
+
+### DB - Mongo ###
+
+
+###############
+## Main apps ##
+###############
+brew cask install firefox visual-studio-code slack discord handbrake spotify tableplus 1password google-chrome openemu
+
+
+#########################
+## Mac System Settings ##
+#########################
+
+# Removing items from dock.
+dockutil --remove Mail
+dockutil --remove Contacts
+dockutil --remove Calendar
+dockutil --remove Notes
+dockutil --remove Maps
+dockutil --remove FaceTime
+dockutil --remove 'Photo Booth'
+dockutil --remove 'TV'
+dockutil --remove 'News'
+dockutil --remove 'Podcasts'
+dockutil --remove 'Photos'
+dockutil --remove 'Messages'
+dockutil --remove 'Books'
+dockutil --add /Applications/Google\ Chrome.app --before 'Safari'
+dockutil --add /Applications/Firefox.app/ --before 'Safari'
+dockutil --add /Applications/Visual\ Studio\ Code.app --after 'Safari'
+dockutil --move Terminal --after /Applications/Visual\ Studio\ Code.ap
+dockutil --add /Applications/TablePlus.app/ --after Terminal
+dockutil --add /Applications/Discord.app/ --after /Applications/TablePlus.app/
+dockutil --add /Applications/Slack.app/ --after /Applications/Discord.app/ 
+dockutil --add Messages --after /Applications/Slack.app/
+dockutil --add Books --after Messages
+dockutil --add /Applications/Notion.app/ --after Books
+dockutil --add Music --after /Applications/Notion.app/
+dockutil --add /Applications/VLC.app/ --after Music
+dockutil --add /Applications/Spotify.app/ --after /Applications/VLC.app/ 
+dockutil --add /Applications/1Password\ 7.app/ --after 'System Preferences'
+
+
+# Spacers
+dockutil --add '' --type spacer --section apps --after /Applications/1Password\ 7.app/
+dockutil --add '' --type spacer --section apps --after Safari
+dockutil --add '' --type spacer --section apps --after /Applications/TablePlus.app/
+dockutil --add '' --type spacer --section apps --after  /Applications/Notion.app/ 
+
+
+### Defaults ###
+
+# Prevent Time Machine from prompting to use new hard drives as backup volume
+defaults write com.apple.TimeMachine DoNotOfferNewDisksForBackup -bool true
+
+
+
+##########
+## TODO ##
+##########
+### Enable Battery Percentage In Menu Bar. ###
+
+### Logging into Spotify ###
+# Use spotify-cli-mac???
+
+### use PyEnv to install newest version of Python ###
+
+### Setup ssh-keygen ###
+
+################
+## Soundtrack ##
+################
+# Paul Simon - Graceland
+# Donkey Kong Country 1&2 - Soundtrack
+

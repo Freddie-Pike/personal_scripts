@@ -1,0 +1,34 @@
+dockutil --remove Mail
+dockutil --remove Contacts
+dockutil --remove Calendar
+dockutil --remove Notes
+dockutil --remove Maps
+dockutil --remove FaceTime
+dockutil --remove 'Photo Booth'
+dockutil --remove 'TV'
+dockutil --remove 'News'
+dockutil --remove 'Podcasts'
+dockutil --remove 'Photos'
+dockutil --remove 'Messages'
+dockutil --remove 'Books'
+dockutil --add /Applications/Google\ Chrome.app --before 'Safari'
+dockutil --add /Applications/Firefox.app/ --before 'Safari'
+dockutil --add /Applications/Visual\ Studio\ Code.app --after 'Safari'
+dockutil --move Terminal --after /Applications/Visual\ Studio\ Code.ap
+dockutil --add /Applications/TablePlus.app/ --after Terminal
+dockutil --add /Applications/Discord.app/ --after /Applications/TablePlus.app/
+dockutil --add /Applications/Slack.app/ --after /Applications/Discord.app/ 
+dockutil --add Messages --after /Applications/Slack.app/
+dockutil --add Books --after Messages
+dockutil --add /Applications/Notion.app/ --after Books
+dockutil --add Music --after /Applications/Notion.app/
+dockutil --add /Applications/VLC.app/ --after Music
+dockutil --add /Applications/Spotify.app/ --after /Applications/VLC.app/ 
+dockutil --add /Applications/1Password\ 7.app/ --after 'System Preferences'
+
+
+# Spacers
+dockutil --add '' --type spacer --section apps --after /Applications/1Password\ 7.app/
+dockutil --add '' --type spacer --section apps --after Safari
+dockutil --add '' --type spacer --section apps --after /Applications/TablePlus.app/
+dockutil --add '' --type spacer --section apps --after  /Applications/Notion.app/ 
