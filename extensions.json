@@ -1,0 +1,14 @@
+{
+    "recommendations": [
+        "ms-python.python",
+        "atlassian.atlascode",
+        "eamodio.gitlens",
+        "dbaeumer.vscode-eslint",
+        "vincaslt.highlight-matching-tag",
+        "samuelcolvin.jinjahtml",
+        "aaron-bond.better-comments",
+        "esbenp.prettier-vscode",
+        "ms-vsliveshare.vsliveshare-pack",
+        "ms-vscode-remote.vscode-remote-extensionpack"
+    ]
+}
