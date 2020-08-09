@@ -86,7 +86,7 @@ brew services start redis
 ###############
 ## Main apps ##
 ###############
-brew cask install firefox visual-studio-code slack discord handbrake spotify tableplus 1password google-chrome openemu
+brew cask install firefox visual-studio-code slack discord handbrake spotify tableplus 1password google-chrome openemu the-unarchiver
 
 
 #########################
